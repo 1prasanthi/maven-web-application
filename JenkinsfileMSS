@@ -1,0 +1,30 @@
+
+node
+{
+ def Home = tool name: "Maven 3.9.2"
+  stage('CheckoutCode')
+  {
+   git branch: 'development', credentialsId: '7f5f9854-8820-4d49-9256-18b8bbebbf9a', url: 'https://github.com/1prasanthi/maven-web-application.git'
+  }
+  stage('Build')
+  {
+   sh "${Home}/bin/mvn clean package" 
+   }
+
+  /*
+   stage('DeploytoTomcat')
+   {
+    sshagent(['15d9a512-0e2f-4760-8322-86717ac06582']) 
+    { 
+    sh "scp target/maven-web-application.war ec2-user@13.233.254.49:/opt/apache-tomcat-9.0.78/webapps/" 
+    } 
+    } 
+    stage('Mail'
+    {
+    mail bcc: '', body: '''build over records
+
+Thanks,
+Prasanthi.''', cc: 'rakeshnangireddi@gmail.com', from: '', replyTo: '', subject: 'build over', to: 'npprasanthi19@gmail.com' 
+    }
+    */
+}
