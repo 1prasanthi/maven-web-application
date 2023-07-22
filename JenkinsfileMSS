@@ -2,6 +2,7 @@
 node
 {
  def Home = tool name: "Maven 3.9.2"
+ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
   stage('CheckoutCode')
   {
    git branch: 'development', credentialsId: '7f5f9854-8820-4d49-9256-18b8bbebbf9a', url: 'https://github.com/1prasanthi/maven-web-application.git'
